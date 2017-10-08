@@ -23,7 +23,7 @@ class FallbackTest {
         private static final Logger LOGGER = LoggerFactory.getLogger(AlwaysFailingCommand.class);
 
         AlwaysFailingCommand() {
-            super(HystrixCommandGroupKey.Factory.asKey("ExampleGroup"));
+            super(HystrixCommandGroupKey.Factory.asKey(FallbackTest.class.getSimpleName()));
         }
 
         @Override

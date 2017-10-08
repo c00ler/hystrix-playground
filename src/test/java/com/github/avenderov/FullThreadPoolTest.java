@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
@@ -33,10 +34,9 @@ class FullThreadPoolTest {
 
     @Test
     void shouldThrowIfPoolIsFull() {
-        for (int i = 0; i < DEFAULT_POOL_SIZE + 1; i++) {
-            final int current = i;
+        for (final Integer i : IntStream.range(0, DEFAULT_POOL_SIZE + 1).toArray()) {
             new Thread(() -> {
-                final DelayedReturnCommand command = new DelayedReturnCommand("Thread-" + current, 5L);
+                final DelayedReturnCommand command = new DelayedReturnCommand("Thread-" + i, 5L);
                 try {
                     command.execute();
                 } catch (Exception e) {
@@ -61,7 +61,7 @@ class FullThreadPoolTest {
         private final Long delay;
 
         DelayedReturnCommand(final String value, final Long delay) {
-            super(HystrixCommandGroupKey.Factory.asKey("ExampleGroup"));
+            super(HystrixCommandGroupKey.Factory.asKey(FullThreadPoolTest.class.getSimpleName()));
             this.value = value;
             this.delay = delay;
         }

@@ -17,6 +17,7 @@
         <hystrix.version>1.5.12</hystrix.version>
         <guava.version>23.1-jre</guava.version>
         <slf4j.version>1.7.25</slf4j.version>
+        <commons-lang3.version>3.6</commons-lang3.version>
 
         <!-- Test dependencies -->
         <junit.platform.version>1.0.1</junit.platform.version>
@@ -42,6 +43,12 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
         </dependency>
 
         <!-- Test dependencies -->
